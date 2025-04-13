@@ -1,0 +1,53 @@
+body {
+     background: url('C:/Users/swaya/OneDrive - vit.ac.in/Desktop/dogs-playing-playground-park-background-600nw-2006454464.webp') no-repeat;
+
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    background: linear-gradient(to left, red, orange, yellow, green, blue, indigo, violet);
+    -webkit-background-clip: text;
+    color: transparent;
+    text-align: center;
+    font-size: 3em;
+    padding: 20px;
+}
+
+.description {
+    column-count: 2;
+    column-gap: 40px;
+    line-height: 30pt;
+    padding: 20px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.6); 
+    border-radius: 10px;
+    margin: 20px;
+}
+
+h2 {
+    font-size: 2.5em;
+    color: #fff;
+    text-align: center;
+    margin-top: 0;
+}
+
+.ball-animation svg {
+    position: relative;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0) rotate(0deg) skewX(0deg);
+    }
+    50% {
+        transform: translateY(-100px) rotate(180deg) skewX(20deg);
+    }
+    100% {
+        transform: translateY(0) rotate(360deg) skewX(0deg);
+    }
+}
