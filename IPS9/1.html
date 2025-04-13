@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>23BCE1461</title>
+    <style>
+        table { width: 50%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid black; padding: 10px; text-align: center; }
+        th { background-color: lightgray; }
+        .hot { background-color: red; color: white; }
+        .pleasant { background-color: green; color: white; }
+        .cold { background-color: blue; color: white; }
+    </style>
+</head>
+<body>
+    <h2>New York City - Temperature Analysis</h2>
+    <table>
+        <thead>
+            <tr><th>Day</th><th>Temperature (°F)</th><th>Category</th></tr>
+        </thead>
+        <tbody id="temperatureTable"></tbody>
+    </table>
+    <h3>Summary</h3>
+    <p><b>Hot Days:</b> <span id="hotDays"></span></p>
+    <p><b>Pleasant Days:</b> <span id="pleasantDays"></span></p>
+    <p><b>Cold Days:</b> <span id="coldDays"></span></p>
+
+    <script>
+        let temperatures = [55,62,68,74,59,45,41,58,60,67,65,78,82,88,91,92,90,93,87,80,78,79,72,68,61,59,55,65];
+        let hotDays = 0, pleasantDays = 0, coldDays = 0, tableContent = "";
+
+        for (let i = 0; i < temperatures.length; i++) {
+            let temp = temperatures[i], category = "", className = "";
+            if (temp >= 85) { category = "HOT"; className = "hot"; hotDays++; } 
+            else if (temp >= 60 && temp <= 84) { category = "PLEASANT"; className = "pleasant"; pleasantDays++; } 
+            else { category = "COLD"; className = "cold"; coldDays++; }
+
+            tableContent += `<tr class="${className}"><td>Day ${i + 1}</td><td>${temp}°F</td><td>${category}</td></tr>`;
+        }
+       document.getElementById("temperatureTable").innerHTML = tableContent;
+        document.getElementById("hotDays").innerText = hotDays;
+        document.getElementById("pleasantDays").innerText = pleasantDays;
+        document.getElementById("coldDays").innerText = coldDays;
+    </script>
+</body>
+</html>	
+
