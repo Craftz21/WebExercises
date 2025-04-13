@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>23BCE1461</title>
+   <script>
+    function calc(){
+        var ch=parseInt(document.getElementById("child").value);
+        var ad=parseInt(document.getElementById("adult").value);
+        var total=(ch*5)+(ad*10);
+        document.getElementById("sum").value="Rs."+total;
+    }
+   </script>
+</head>
+<body>
+    <h1><center>TICKET BOOTH</center></h1>
+    Adults (Rs.10 each)<br>
+    <input type="number" id="adult"><br>
+    Children (Rs.5 each)<br>
+    <input type="number" id="child"><br>
+    <button onclick="calc()">Total</button>
+    <input type="text" id="sum" readonly="readonly">
+</body>
+</html>
