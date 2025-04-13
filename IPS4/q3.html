@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Feedback</title>
+</head>
+<body>
+    <form>
+        <label for="slider1">Feedback 1:</label>
+        <input type="range" id="slider1" name="slider1" min="0" max="100" value="50" 
+               oninput="output1.value = this.value; total.value = Number(slider1.value) + Number(slider2.value) + Number(slider3.value)">
+        <output for="slider1" id="output1">50</output>
+        <br>
+
+        <label for="slider2">Feedback 2:</label>
+        <input type="range" id="slider2" name="slider2" min="0" max="100" value="50" 
+               oninput="output2.value = this.value; total.value = Number(slider1.value) + Number(slider2.value) + Number(slider3.value)">
+        <output for="slider2" id="output2">50</output>
+        <br>
+
+        <label for="slider3">Feedback 3:</label>
+        <input type="range" id="slider3" name="slider3" min="0" max="100" value="50" 
+               oninput="output3.value = this.value; total.value = Number(slider1.value) + Number(slider2.value) + Number(slider3.value)">
+        <output for="slider3" id="output3">50</output>
+        <br>
+
+        <p>Total Value: <output id="total">150</output></p>
+    </form>
+</body>
+</html>
