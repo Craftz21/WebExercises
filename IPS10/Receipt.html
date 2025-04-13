@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Receipt</title>
+    <script>
+        function loadReceipt() {
+            let orderData = JSON.parse(localStorage.getItem("orderData"));
+
+            document.getElementById("name").innerText = orderData.name;
+            document.getElementById("phone").innerText = orderData.phone;
+            document.getElementById("email").innerText = orderData.email;
+
+            document.getElementById("appleQty").innerText = orderData.appleChecked;
+            document.getElementById("bananaQty").innerText = orderData.bananaChecked;
+            document.getElementById("avocadoQty").innerText = orderData.avocadoChecked;
+        }
+    </script>
+</head>
+<body onload="loadReceipt()">
+    <h2>Order Receipt</h2>
+    <p><b>Customer Name:</b> <span id="name"></span></p>
+    <p><b>Phone Number:</b> <span id="phone"></span></p>
+    <p><b>Email:</b> <span id="email"></span></p>
+
+    <h3>Ordered Products</h3>
+    <p><b>Apple (kg):</b> <span id="appleQty"></span></p>
+    <p><b>Banana (kg):</b> <span id="bananaQty"></span></p>
+    <p><b>Avocado (kg):</b> <span id="avocadoQty"></span></p>
+</body>
+</html>
