@@ -1,60 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>23BCE1461</title>
-</head>
-<body>
-    <form>
-        
-        <fieldset>
-            <legend>Just trying</legend>
-            BMI Calculator <select >
-                <option >Male</option>
-                <option selected>Female</option>
-                <option>Other</option>
-            </select>
-        </fieldset>
-        <fieldset>
-            <b>Enter your weight:</b><br>
-            (in pounds)<input id="weight" type="number">
-        </fieldset>
-        <fieldset>
-            <b>Enter your height:</b><br>
-            (feet)<input id="feet" type="number"><br>
-            (inches)<input type="number" id="inches">
-         </fieldset>
-         <fieldset>
-            <center><button type="button" onclick="calculate()">Calculate</button></center>
-         </fieldset>
-         <fieldset>
-            <b>Your BMI is:</b><br>
-            <input type="number" readonly id="result">
-         </fieldset>
-    </form>
     <script>
-        function calculate(){
-            let w=document.getElementById("weight").value;
-            let f=document.getElementById("feet").value;
-            let i=document.getElementById("inches").value;
-            let h = (parseFloat(f) * 12) + parseFloat(i);
-            let bmi=(703*w)/(h*h);
-            if(w==""){
-                alert("Please enter weight!");
-                return;
+        function calculateBMI() {
+            let weight = parseFloat(document.getElementById("weight").value);
+            let feet = parseFloat(document.getElementById("feet").value);
+            let inches = parseFloat(document.getElementById("inches").value);
+            let heightInInches = (feet * 12) + inches;
+            let bmi = (703 * weight) / (heightInInches * heightInInches);
+            bmi = bmi.toFixed(2);
+            let status = "";
+            if (bmi < 17.5) {
+                status = "Anorexia";
+            } else if (bmi >= 17.5 && bmi < 18.5) {
+                status = "Underweight";
+            } else if (bmi >= 18.5 && bmi < 24.9) {
+                status = "Ideal Range";
+            } else if (bmi >= 25 && bmi < 29.9) {
+                status = "Overweight";
+            } else {
+                status = "Obese";
             }
-            else if(f==""){
-                alert("Please enter height in feet!");
-                return;
-            }
-            else if(i==""){
-                alert("Please enter height in inches!");
-                return;
-            }
-            document.getElementById("result").value=bmi;
-            return;
+
+            alert("Your BMI is: " + bmi + "\nStatus: " + status);
         }
     </script>
+</head>
+<body>
+    <h2>BMI Calculator</h2>
+    <label>Enter Your Weight (in pounds):</label>
+    <input type="number" id="weight"><br><br>
+
+    <label>Enter Your Height:</label><br>
+    <label>Feet:</label>
+    <input type="number" id="feet">
+    <label>Inches:</label>
+    <input type="number" id="inches"><br><br>
+
+    <button onclick="calculateBMI()">Calculate</button>
 </body>
 </html>
