@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1461</title>
+    <style>
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th,td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th{
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Small Airline capacity booking service</h1>
+    <p>Enter Passenger Name: <input type="text" id="name"></p>
+    <button id="submit">Submit</button>
+    <p>Book Tickets : <button onclick="first()">First-Class (1-5)</button> &nbsp <button onclick="second()">Second-Class (5-10)</button> </p>
+    
+    <p>Boarding chart:</p>
+    <table id="boardpass">
+        <tr>
+            <th>Passenger Name</th>
+            <th>Seat No.</th>
+            <th>Status</th>
+            <th>Price</th>
+        </tr>
+    </table>
+    <script>
+    const seats=new Array(10).fill(0);
+    let table=document.getElementById("boardpass");
+        function first(){
+            for(let i=0;i<5;i++){
+                if(seats[i]==0){
+                    seats[i]=-1;
+                    let row=table.insertRow();
+                    if(document.getElementById("name").value==""){
+                        alert("Please enter a name!");
+                        return;
+                    }
+                    row.insertCell(0).innerHTML=document.getElementById("name").value;
+                    row.insertCell(1).innerHTML=i+1;
+                    row.insertCell(2).innerHTML="Booked";
+                    row.insertCell(3).innerHTML="Rs. 5000";
+                    return;
+                }
+            }
+            alert("No seats available!");
+            let ask=prompt("Are you okay wiht booking Economy? y/n");
+            if(ask=="y"){
+                second();
+            }
+            else{
+                alert("Thank you for reaching out!");
+                return;
+            }
+        }
+        function second(){
+            for(let i=5;i<10;i++){
+                if(seats[i]==0){
+                    seats[i]=-1;
+                    let row=table.insertRow();
+                    if(document.getElementById("name").value==""){
+                        alert("Please enter a name!");
+                        return;
+                    }
+                    row.insertCell(0).innerHTML=document.getElementById("name").value;
+                    row.insertCell(1).innerHTML=i+1;
+                    row.insertCell(2).innerHTML="Booked";
+                    row.insertCell(3).innerHTML="Rs. 3000";
+                    return;
+                }
+            }
+            alert("No seats available!");
+            alert("Thank you for reaching out!");
+            return;
+        }
+
+    </script>
+</body>
+</html>
