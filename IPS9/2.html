@@ -1,89 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>23BCE1461</title>
-    <style>
-        table{
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th,td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: center;
-        }
-        th{
-            background-color: #f2f2f2;
-        }
-    </style>
-</head>
-<body>
-    <h1>Small Airline capacity booking service</h1>
-    <p>Enter Passenger Name: <input type="text" id="name"></p>
-    <button id="submit">Submit</button>
-    <p>Book Tickets : <button onclick="first()">First-Class (1-5)</button> &nbsp <button onclick="second()">Second-Class (5-10)</button> </p>
-    
-    <p>Boarding chart:</p>
-    <table id="boardpass">
-        <tr>
-            <th>Passenger Name</th>
-            <th>Seat No.</th>
-            <th>Status</th>
-            <th>Price</th>
-        </tr>
-    </table>
     <script>
-    const seats=new Array(10).fill(0);
-    let table=document.getElementById("boardpass");
-        function first(){
-            for(let i=0;i<5;i++){
-                if(seats[i]==0){
-                    seats[i]=-1;
-                    let row=table.insertRow();
-                    if(document.getElementById("name").value==""){
-                        alert("Please enter a name!");
-                        return;
-                    }
-                    row.insertCell(0).innerHTML=document.getElementById("name").value;
-                    row.insertCell(1).innerHTML=i+1;
-                    row.insertCell(2).innerHTML="Booked";
-                    row.insertCell(3).innerHTML="Rs. 5000";
-                    return;
+        let seats = new Array(10).fill(0);
+
+        function assignSeat() {
+            let name = prompt("Enter your name:");
+            let choice = parseInt(prompt("Enter 1 for First-Class (Seats 1-5) or 2 for Economy (Seats 6-10):"));
+           
+            let seatNumber = -1;
+
+            if (choice === 1) {
+                seatNumber = findAvailableSeat(0, 5);
+                if (seatNumber === -1) {
+                    let switchClass = confirm("First-Class is full. Would you like an Economy seat?");
+                    if (switchClass) seatNumber = findAvailableSeat(5, 10);
+                }
+            } else {
+                seatNumber = findAvailableSeat(5, 10);
+                if (seatNumber === -1) {
+                    let switchClass = confirm("Economy is full. Would you like a First-Class seat?");
+                    if (switchClass) seatNumber = findAvailableSeat(0, 5);
                 }
             }
-            alert("No seats available!");
-            let ask=prompt("Are you okay wiht booking Economy? y/n");
-            if(ask=="y"){
-                second();
-            }
-            else{
-                alert("Thank you for reaching out!");
+
+            if (seatNumber === -1) {
+                alert("Sorry, the flight is fully booked.");
                 return;
             }
-        }
-        function second(){
-            for(let i=5;i<10;i++){
-                if(seats[i]==0){
-                    seats[i]=-1;
-                    let row=table.insertRow();
-                    if(document.getElementById("name").value==""){
-                        alert("Please enter a name!");
-                        return;
-                    }
-                    row.insertCell(0).innerHTML=document.getElementById("name").value;
-                    row.insertCell(1).innerHTML=i+1;
-                    row.insertCell(2).innerHTML="Booked";
-                    row.insertCell(3).innerHTML="Rs. 3000";
-                    return;
-                }
-            }
-            alert("No seats available!");
-            alert("Thank you for reaching out!");
-            return;
+
+            seats[seatNumber] = 1;
+            let seatClass = seatNumber < 5 ? "First-Class" : "Economy";
+
+            document.write(`
+                <h2>Boarding Pass</h2>
+                <p><b>Name:</b> ${name}</p>
+                <p><b>Seat Number:</b> ${seatNumber + 1}</p>
+                <p><b>Class:</b> ${seatClass}</p>
+                <hr>
+            `);
         }
 
+        function findAvailableSeat(start, end) {
+            for (let i = start; i < end; i++) {
+                if (seats[i] === 0) return i;
+            }
+            return -1;
+        }
     </script>
+</head>
+<body>
+    <h1>Welcome to Small Airline Reservations</h1>
+    <button onclick="assignSeat()">Book a Seat</button>
 </body>
 </html>
