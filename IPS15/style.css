@@ -1,0 +1,11 @@
+.external-button {
+    color: white;
+    background-color: green;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .app {
+    font-family: sans-serif;
+    text-align: center;
+  }
